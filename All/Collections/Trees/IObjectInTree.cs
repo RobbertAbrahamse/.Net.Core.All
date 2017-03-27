@@ -12,18 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
-
-namespace All.Collections.Arrays.Extensions
+namespace All.Collections.Trees
 {
-    public static class ArrayExtensions
+    /// <summary>
+    /// An object (node) in a tree is an object that specifally is "aware" that it is a node in a tree.
+    /// </summary>
+    public interface IObjectInTree
     {
-        public static IEnumerator<T> GetEnumerator<T>(this T[] items)
-        {
-            for (var e = items.GetEnumerator(); e.MoveNext();)
-            {
-                yield return (T)e.Current;
-            }
-        }
     }
 }

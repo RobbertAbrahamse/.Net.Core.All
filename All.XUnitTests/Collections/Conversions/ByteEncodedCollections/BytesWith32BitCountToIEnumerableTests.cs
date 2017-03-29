@@ -25,21 +25,21 @@ namespace All.XUnitTests.Collections.Conversions.ByteEncodedCollections
     public class BytesWith32BitCountToIEnumerableTests
     {
         [Fact]
-        public void TestConvertToIEnumerable123Bytes()
+        public void TestConvertToIEnumerable3Bytes()
         {
             var items = new byte[] { 1, 2, 3 };
             Test(e => e.GetByte(), items, items, 0);
         }
 
         [Fact]
-        public void TestConvertToIEnumerable123Ints()
+        public void TestConvertToIEnumerable3Ints()
         {
             var items = new[] { 1, 2, 3 };
             Test(e => e.GetInt32(), items.SelectMany(item => BitConverter.GetBytes(item)), items, 0);
         }
 
         [Fact]
-        public void TestConvertToIEnumerable123IntsAnd3UnusedBytes()
+        public void TestConvertToIEnumerable3IntsAnd3UnusedBytes()
         {
             var items = new[] { 1, 2, 3 };
             Test(e => e.GetInt32(), items.SelectMany(item => BitConverter.GetBytes(item)).Concat(new byte[] { 10, 11, 12 }), items, 3);

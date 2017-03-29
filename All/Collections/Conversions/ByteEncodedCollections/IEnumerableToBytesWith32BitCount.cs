@@ -19,16 +19,18 @@ namespace All.Collections.Conversions.ByteEncodedCollections
 {
     public class IEnumerableToBytesWith32BitCount<T>
     {
-        public delegate IEnumerable<byte> ConvertToBytesDelegate(T item);
+        public delegate IEnumerable<byte> ConvertItemToBytesDelegate(T item);
 
         public IEnumerableToBytesWith32BitCount()
         {
         }
 
-        public IEnumerableToBytesWith32BitCount(ConvertToBytesDelegate convertToBytesFunc)
+        public IEnumerableToBytesWith32BitCount(ConvertItemToBytesDelegate convertItemToBytesFunc)
         {
-            ConvertToBytesFunc = convertToBytesFunc;
+            ConvertItemToBytesFunc = convertItemToBytesFunc;
         }
+
+        public ConvertItemToBytesDelegate ConvertItemToBytesFunc { get; set; }
 
         public IEnumerable<byte> ConvertToBytesWith32BitCount(IEnumerable<T> items, int count)
         {
@@ -45,7 +47,7 @@ namespace All.Collections.Conversions.ByteEncodedCollections
                 IEnumerable<byte> itemBytes;
                 try
                 {
-                    itemBytes = ConvertToBytesFunc(item);
+                    itemBytes = ConvertItemToBytesFunc(item);
                 }
                 catch (Exception exception)
                 {
@@ -58,7 +60,5 @@ namespace All.Collections.Conversions.ByteEncodedCollections
                 }
             }
         }
-
-        public ConvertToBytesDelegate ConvertToBytesFunc { get; set; }
     }
 }

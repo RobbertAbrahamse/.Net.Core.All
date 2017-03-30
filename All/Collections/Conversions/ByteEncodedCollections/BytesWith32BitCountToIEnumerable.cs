@@ -24,7 +24,7 @@ namespace All.Collections.Conversions.ByteEncodedCollections
     /// <typeparam name="T">The type of the items in the collection</typeparam>
     public class BytesWith32BitCountToIEnumerable<T>
     {
-        public delegate T GetItemFromBytesDelegate(IEnumerator<byte> itemBytes);
+        public delegate T GetItemFromBytesDelegate(IEnumerator<byte> itemBytes, int itemIndex, int totalItemCount);
 
         public BytesWith32BitCountToIEnumerable()
         {
@@ -67,7 +67,7 @@ namespace All.Collections.Conversions.ByteEncodedCollections
                 T item;
                 try
                 {
-                    item = GetItemFromBytesFunc(enumeratorBytesWith32BitCount);
+                    item = GetItemFromBytesFunc(enumeratorBytesWith32BitCount, i, itemCount);
                 }
                 catch (Exception exception)
                 {

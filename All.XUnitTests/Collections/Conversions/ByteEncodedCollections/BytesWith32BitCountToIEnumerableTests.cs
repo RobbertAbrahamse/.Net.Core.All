@@ -49,7 +49,7 @@ namespace All.XUnitTests.Collections.Conversions.ByteEncodedCollections
         {
             // Arrange
             var bytes = BitConverter.GetBytes(shouldBeItems.Length).Concat(itemBytes);
-            var to = new BytesWith32BitCountToIEnumerable<T>(e => getItemFromBytesFunc(e));
+            var to = new BytesWith32BitCountToIEnumerable<T>((e, itemIndex, totalItemCount) => getItemFromBytesFunc(e));
             var enumerator = bytes.GetEnumerator();
             enumerator.MoveNext();
 
